@@ -1,0 +1,53 @@
+﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Interactions;
+using OpenQA.Selenium.Support.UI;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Flipkart_Automation.Pages
+{
+    internal class LoginPages
+    {
+        IWebDriver _driver;
+        public LoginPages(IWebDriver driver)
+        {
+            this._driver = driver;
+        }
+
+        private IWebElement CloseLoginPopUp => _driver.FindElement(By.ClassName("_30XB9F"));
+
+        // Update these selectors as per your actual HTML
+        private IWebElement LoginButton => _driver.FindElement(By.ClassName("H6-NpN"));
+        private By DropdownLocator => By.CssSelector("div._1Us3XD");
+        private By SignUpButtonLocator => By.ClassName("_1Mikcj");
+
+
+        public void ClosePupUpIfPresent()
+        {
+            try
+            {
+                if (CloseLoginPopUp.Displayed)
+                {
+                    CloseLoginPopUp.Click();
+                }
+            }
+            catch
+            {
+
+            }
+        }
+
+        public void ClickSignUpAfterDropdown()
+        {
+            Actions actions = new Actions(_driver);
+            actions.MoveToElement(LoginButton).Perform();
+            WebDriverWait wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(5));
+            wait.Until(driver => driver.FindElement(DropdownLocator).Displayed);
+            IWebElement signUpButton = _driver.FindElement(SignUpButtonLocator);
+            signUpButton.Click();
+        }
+    }
+}
