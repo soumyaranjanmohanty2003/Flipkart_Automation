@@ -55,13 +55,13 @@ namespace Flipkart_Automation.Pages
         public void EnterContactNumberAndSubmit(string contactNumber)
         {
             WebDriverWait wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(5));
-            // Wait for the phone input to be visible
+          
             wait.Until(driver => driver.FindElement(PhoneInputLocator).Displayed);
 
-            // Enter the contact number
+          
             _driver.FindElement(PhoneInputLocator).SendKeys(contactNumber);
 
-            // Click the submit button
+           
             _driver.FindElement(By.ClassName("QqFHMw")).Click();
         }
     }
