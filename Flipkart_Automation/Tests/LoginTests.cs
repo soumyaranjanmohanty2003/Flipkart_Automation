@@ -26,9 +26,11 @@ namespace Flipkart_Automation.Tests
         public void CloseLoginPopUpTest()
         {
             var loginPage = new LoginPages(driver);
-            Thread.Sleep(5000);
+            Thread.Sleep(2000);
             loginPage.ClosePupUpIfPresent();
             loginPage.ClickSignUpAfterDropdown();
+            loginPage.EnterContactNumberAndSubmit("7008773642");
+            Thread.Sleep(2000);
         }
         [TearDown]
         public void TearDown()

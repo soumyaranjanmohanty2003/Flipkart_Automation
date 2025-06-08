@@ -24,6 +24,8 @@ namespace Flipkart_Automation.Pages
         private By DropdownLocator => By.CssSelector("div._1Us3XD");
         private By SignUpButtonLocator => By.ClassName("_1Mikcj");
 
+        private By PhoneInputLocator => By.ClassName("r4vIwl");
+
 
         public void ClosePupUpIfPresent()
         {
@@ -48,6 +50,19 @@ namespace Flipkart_Automation.Pages
             wait.Until(driver => driver.FindElement(DropdownLocator).Displayed);
             IWebElement signUpButton = _driver.FindElement(SignUpButtonLocator);
             signUpButton.Click();
+        }
+
+        public void EnterContactNumberAndSubmit(string contactNumber)
+        {
+            WebDriverWait wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(5));
+            // Wait for the phone input to be visible
+            wait.Until(driver => driver.FindElement(PhoneInputLocator).Displayed);
+
+            // Enter the contact number
+            _driver.FindElement(PhoneInputLocator).SendKeys(contactNumber);
+
+            // Click the submit button
+            _driver.FindElement(By.ClassName("QqFHMw")).Click();
         }
     }
 }
