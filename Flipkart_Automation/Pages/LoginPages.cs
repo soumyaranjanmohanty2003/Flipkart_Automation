@@ -64,5 +64,11 @@ namespace Flipkart_Automation.Pages
             // Click the submit button
             _driver.FindElement(By.ClassName("QqFHMw")).Click();
         }
+
+        public void ClickCartSection()
+        {         
+            IWebElement cartSection = _driver.FindElement(By.LinkText("Cart")); 
+            cartSection.Click();
+        }
     }
 }
